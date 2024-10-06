@@ -25,23 +25,23 @@ def length_of_longest_substring_n3(s):
     post: Returns an integer >= 0 representing the length of the longest substring
           in s that contains no repeating characters.
     """
-    max_len = 0
-    n = len(s)
+    max_length = 0
+    length_string = len(s)
 
-    for i in range(n):
-        for j in range(i, n):
-            freq = [0] * 256
+    for i in range(length_string):
+        for j in range(i,length_string):
+            frequency = [0] * 256
             has_duplicate = False
             for k in range(i, j+1):
-                char = ord(s[k])
-                freq[char] += 1
-                if freq[char] > 1:
+                character = ord(s[k])
+                frequency[character] += 1
+                if frequency[character] > 1:
                     has_duplicate = True
                     break
             if not has_duplicate:
-                max_len = max(max_len, j-i+1)
+                max_length = max(max_length, j-i+1)
 
-    return max_len
+    return max_length
 
 
 def length_of_longest_substring_n2(s):
@@ -55,18 +55,18 @@ def length_of_longest_substring_n2(s):
     post: Returns an integer >= 0 representing the length of the longest substring
           in s that contains no repeating characters.
     """
-    max_len = 0
-    n = len(s)
-    for i in range(n):
-        freq = [0] * 256
-        for j in range(i, n):
-            char = ord(s[j])
-            freq[char] += 1
-            if freq[char] > 1:
+    max_length = 0
+    length_string = len(s)
+    for i in range(length_string):
+        frequency = [0] * 256
+        for j in range(i,length_string):
+            character = ord(s[j])
+            frequency[character] += 1
+            if frequency[character] > 1:
                 break
-            max_len = max(max_len, j-i+1)
+            max_length = max(max_length, j-i+1)
 
-    return max_len
+    return max_length
 
 
 def length_of_longest_substring_n(s):
@@ -82,15 +82,17 @@ def length_of_longest_substring_n(s):
     post: Returns an integer >= 0 representing the length of the longest substring
           in s that contains no repeating characters.
     """
-    seen_chars = set()
-    max_len = 0
+
+
+    seen_characters = set()
+    max_length = 0
     left = 0
 
     for right in range(len(s)):
-        while s[right] in seen_chars:
-            seen_chars.remove(s[left])
+        while s[right] in seen_characters:
+            seen_characters.remove(s[left])
             left +=1
-        seen_chars.add(s[right])
+        seen_characters.add(s[right])
 
-        max_len = max(max_len, right - left +1)
-    return max_len
+        max_length = max(max_length, right - left +1)
+    return max_length
